@@ -1,0 +1,10 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dumbbell Logo for FUSSION GYM -->
+  <circle cx="20" cy="60" r="18" fill="#1D8CFF"/>
+  <circle cx="100" cy="60" r="18" fill="#1D8CFF"/>
+  <rect x="35" y="55" width="50" height="10" fill="#37D67A" rx="5"/>
+  <rect x="38" y="45" width="6" height="30" fill="#0A1A2F" rx="3"/>
+  <rect x="76" y="45" width="6" height="30" fill="#0A1A2F" rx="3"/>
+  <circle cx="20" cy="60" r="12" fill="#0A1A2F"/>
+  <circle cx="100" cy="60" r="12" fill="#0A1A2F"/>
+</svg>

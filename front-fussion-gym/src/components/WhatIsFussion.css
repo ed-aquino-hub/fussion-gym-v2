@@ -1,0 +1,136 @@
+.what-is-fussion {
+    background: var(--color-bg-dark);
+}
+
+.section-header {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.section-subtitle {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    margin-top: var(--spacing-sm);
+}
+
+.content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-2xl);
+    align-items: center;
+}
+
+.content-text p {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+.content-text strong {
+    color: var(--color-primary);
+}
+
+.features-list {
+    margin-top: var(--spacing-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.feature-item {
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: flex-start;
+    padding: var(--spacing-md);
+    background: var(--color-bg-card);
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    transition: all var(--transition-base);
+}
+
+.feature-item:hover {
+    border-color: var(--color-primary);
+    transform: translateX(10px);
+}
+
+.feature-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.feature-item h4 {
+    margin: 0 0 var(--spacing-xs) 0;
+    color: var(--color-white);
+    font-size: 1.125rem;
+}
+
+.feature-item p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+}
+
+.content-visual {
+    position: relative;
+}
+
+.visual-card {
+    padding: var(--spacing-xl);
+}
+
+.visual-header h3 {
+    margin: 0 0 var(--spacing-lg) 0;
+    text-align: center;
+    color: var(--color-primary);
+}
+
+.points-simulation {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.point-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-md);
+    background: rgba(29, 140, 255, 0.05);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--color-primary);
+}
+
+.point-activity {
+    color: var(--color-text-primary);
+    font-weight: 500;
+}
+
+.point-value {
+    color: var(--color-points);
+    font-weight: 700;
+    font-size: 1.125rem;
+}
+
+.total-points {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: linear-gradient(135deg, rgba(29, 140, 255, 0.2) 0%, rgba(55, 214, 122, 0.2) 100%);
+    border-radius: var(--radius-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid var(--color-primary);
+}
+
+.total-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    font-family: var(--font-heading);
+}
+
+@media (max-width: 968px) {
+    .content-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+}

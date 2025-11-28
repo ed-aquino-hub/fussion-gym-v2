@@ -1,0 +1,97 @@
+.premios-list {
+    background: var(--color-bg-dark);
+}
+
+.premios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin: var(--spacing-2xl) 0;
+}
+
+.premio-card {
+    text-align: center;
+    padding: var(--spacing-lg);
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.premio-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-points) 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--transition-base);
+}
+
+.premio-card:hover::before {
+    transform: scaleX(1);
+}
+
+.premio-emoji {
+    font-size: 4rem;
+    margin-bottom: var(--spacing-md);
+    display: block;
+    transition: transform var(--transition-base);
+}
+
+.premio-card:hover .premio-emoji {
+    transform: scale(1.2);
+}
+
+.premio-nombre {
+    font-size: 1.125rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-white);
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.premio-puntos {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.25rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.puntos-value {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--color-points);
+    font-family: var(--font-heading);
+}
+
+.puntos-label {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+}
+
+.premio-card .btn {
+    width: 100%;
+}
+
+.premios-cta {
+    margin-top: var(--spacing-2xl);
+}
+
+.premios-cta p {
+    font-size: 1.25rem;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+@media (max-width: 768px) {
+    .premios-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: var(--spacing-sm);
+    }
+}

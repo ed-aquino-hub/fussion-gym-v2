@@ -1,0 +1,45 @@
+{
+  "expo": {
+    "name": "FUSSION GYM",
+    "slug": "app-fussion-gym",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/icon.png",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0A1A2F"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.fussiongym.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "backgroundColor": "#0A1A2F"
+      },
+      "package": "com.fussiongym.app",
+      "permissions": [
+        "android.permission.CAMERA"
+      ]
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Permite a FUSSION GYM escanear códigos QR para registrar ejercicios."
+        }
+      ],
+      "expo-router"
+    ],
+    "scheme": "fussion-gym"
+  }
+}

@@ -1,0 +1,235 @@
+.gamification {
+    background: var(--color-bg-dark);
+}
+
+.gamification-flow {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: var(--spacing-lg);
+    margin: var(--spacing-2xl) 0;
+    flex-wrap: wrap;
+}
+
+.flow-step {
+    flex: 1;
+    min-width: 250px;
+    max-width: 350px;
+    position: relative;
+    text-align: center;
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-points) 100%);
+    color: var(--color-white);
+    font-size: 1.5rem;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-md) auto;
+    box-shadow: var(--shadow-glow);
+}
+
+.step-content {
+    padding: var(--spacing-xl);
+}
+
+.step-icon {
+    font-size: 3.5rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.step-content h3 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-primary);
+}
+
+.step-content p {
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+}
+
+.step-connector {
+    display: none;
+}
+
+@media (min-width: 968px) {
+    .step-connector {
+        display: block;
+        position: absolute;
+        top: 25px;
+        right: -30px;
+        width: 60px;
+        height: 2px;
+        background: linear-gradient(90deg, var(--color-primary) 0%, transparent 100%);
+    }
+
+    .step-connector::after {
+        content: '→';
+        position: absolute;
+        right: -10px;
+        top: -10px;
+        color: var(--color-primary);
+        font-size: 1.25rem;
+    }
+
+    .flow-step:last-child .step-connector {
+        display: none;
+    }
+}
+
+.gamification-features {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-2xl);
+}
+
+.feature-highlight {
+    padding: var(--spacing-xl);
+}
+
+.feature-highlight h4 {
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-white);
+    font-size: 1.25rem;
+}
+
+.feature-highlight p {
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-md);
+}
+
+/* Streak Visual */
+.streak-visual {
+    display: flex;
+    gap: var(--spacing-xs);
+    justify-content: center;
+}
+
+.streak-day {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--color-bg-dark);
+    border: 2px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+}
+
+.streak-day.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white);
+    box-shadow: var(--shadow-glow);
+}
+
+/* Level Visual */
+.level-visual {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.level-badge {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-points) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.level-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.level-label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+}
+
+.level-progress {
+    flex: 1;
+}
+
+.progress-bar {
+    height: 8px;
+    background: var(--color-bg-dark);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin-bottom: var(--spacing-xs);
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-points) 100%);
+    border-radius: var(--radius-full);
+    transition: width var(--transition-slow);
+}
+
+.progress-text {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+}
+
+/* Ranking Preview */
+.ranking-preview {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.rank-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-sm);
+    background: var(--color-bg-dark);
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+}
+
+.rank-item.highlight {
+    background: rgba(29, 140, 255, 0.15);
+    border: 1px solid var(--color-primary);
+}
+
+.rank-position {
+    font-weight: 600;
+    min-width: 60px;
+}
+
+.rank-name {
+    flex: 1;
+    color: var(--color-text-secondary);
+}
+
+.rank-points {
+    color: var(--color-points);
+    font-weight: 700;
+}
+
+@media (max-width: 768px) {
+    .gamification-flow {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .level-visual {
+        flex-direction: column;
+        text-align: center;
+    }
+}
