@@ -1,8 +1,9 @@
 import axios from 'axios';
+import { API_URL } from '../config';
 
 // Create axios instance
 const api = axios.create({
-    baseURL: 'https://gym-back.donita.site/api',
+    baseURL: API_URL,
     headers: {
         'Content-Type': 'application/json'
     }
