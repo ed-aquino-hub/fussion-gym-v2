@@ -6,6 +6,7 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import DashboardUser from './pages/DashboardUser';
 import DashboardAdmin from './pages/DashboardAdmin';
+import Exercises from './pages/Exercises';
 
 // Protected Route Component
 const ProtectedRoute = ({ children, requireAdmin = false }) => {
@@ -49,6 +50,15 @@ function App() {
                 element={
                     <ProtectedRoute>
                         <DashboardUser />
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route
+                path="/exercises"
+                element={
+                    <ProtectedRoute>
+                        <Exercises />
                     </ProtectedRoute>
                 }
             />

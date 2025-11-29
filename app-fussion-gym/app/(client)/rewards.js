@@ -1,12 +1,14 @@
 import { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Alert, ActivityIndicator } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { getRewards } from '../../services/api';
+import api from '../../services/api';
 
 export default function Rewards() {
     const [rewards, setRewards] = useState([]);
     const [userPoints, setUserPoints] = useState(0);
     const [loading, setLoading] = useState(true);
+    const [redeeming, setRedeeming] = useState(null);
 
     useEffect(() => {
         loadRewards();
@@ -17,8 +19,15 @@ export default function Rewards() {
             const token = await AsyncStorage.getItem('token');
             const userData = await AsyncStorage.getItem('user');
             const user = JSON.parse(userData);
-            setUserPoints(user.puntos_totales || 0);
 
+            // Get fresh user data from API to have current points
+            const userResponse = await fetch(`http://10.219.126.3:3307/api/users/${user.id}`, {
+                headers: { Authorization: `Bearer ${token}` }
+            });
+            const currentUser = await userResponse.json();
+
+            setUserPoints(currentUser.puntos || 0);
+            console.log('Puntos del usuario:', currentUser.puntos); // Debug
 
             const rewardsData = await getRewards(token);
             setRewards(rewardsData);
@@ -29,9 +38,40 @@ export default function Rewards() {
         }
     };
 
+    const handleRedeem = async (reward) => {
+        Alert.alert(
+            '¿Canjear Premio?',
+            `¿Quieres canjear "${reward.nombre.replace(/^[^ ]+ /, '')}" por ${reward.puntos_necesarios} puntos?`,
+            [
+                { text: 'Cancelar', style: 'cancel' },
+                {
+                    text: 'Sí, Canjear',
+                    onPress: async () => {
+                        setRedeeming(reward.id);
+                        try {
+                            const token = await AsyncStorage.getItem('token');
+                            await api.post('/rewards/redeem',
+                                { premioId: reward.id },
+                                { headers: { Authorization: `Bearer ${token}` } }
+                            );
+                            Alert.alert('¡Éxito!', `Premio "${reward.nombre.replace(/^[^ ]+ /, '')}" canjeado exitosamente`);
+                            loadRewards(); // Reload to update points and rewards
+                        } catch (error) {
+                            console.error('Error redeeming:', error);
+                            Alert.alert('Error', error.response?.data?.error || 'No se pudo canjear el premio');
+                        } finally {
+                            setRedeeming(null);
+                        }
+                    }
+                }
+            ]
+        );
+    };
+
     const renderReward = ({ item }) => {
         const canAfford = userPoints >= item.puntos_necesarios;
         const hasStock = item.stock > 0;
+        const canRedeem = canAfford && hasStock;
         const emoji = item.nombre.match(/[^ ]+/)?.[0] || '🎁';
 
         return (
@@ -44,7 +84,26 @@ export default function Rewards() {
                         <Text style={styles.rewardPoints}>{item.puntos_necesarios} pts</Text>
                         <Text style={styles.rewardStock}>Stock: {item.stock}</Text>
                     </View>
+
+                    {/* Redeem Button */}
+                    <TouchableOpacity
+                        style={[
+                            styles.redeemButton,
+                            canRedeem ? styles.redeemButtonActive : styles.redeemButtonDisabled
+                        ]}
+                        disabled={!canRedeem || redeeming === item.id}
+                        onPress={() => handleRedeem(item)}
+                    >
+                        {redeeming === item.id ? (
+                            <ActivityIndicator color="#FFF" size="small" />
+                        ) : (
+                            <Text style={styles.redeemButtonText}>
+                                {!hasStock ? '❌ Sin Stock' : !canAfford ? '💰 Insuficiente' : '✓ Canjear'}
+                            </Text>
+                        )}
+                    </TouchableOpacity>
                 </View>
+
                 <View style={[
                     styles.statusBadge,
                     !hasStock && styles.noStock,
@@ -120,7 +179,7 @@ const styles = StyleSheet.create({
         padding: 16,
         marginBottom: 16,
         flexDirection: 'row',
-        alignItems: 'center',
+        alignItems: 'flex-start',
         borderWidth: 1,
         borderColor: '#2A3544',
     },
@@ -145,6 +204,7 @@ const styles = StyleSheet.create({
     rewardMeta: {
         flexDirection: 'row',
         gap: 16,
+        marginBottom: 12,
     },
     rewardPoints: {
         color: '#37D67A',
@@ -155,11 +215,30 @@ const styles = StyleSheet.create({
         color: '#B0B8C1',
         fontSize: 14,
     },
+    redeemButton: {
+        paddingVertical: 10,
+        paddingHorizontal: 16,
+        borderRadius: 8,
+        alignItems: 'center',
+        marginTop: 4,
+    },
+    redeemButtonActive: {
+        backgroundColor: '#37D67A',
+    },
+    redeemButtonDisabled: {
+        backgroundColor: '#4A5568',
+    },
+    redeemButtonText: {
+        color: '#FFFFFF',
+        fontSize: 14,
+        fontWeight: 'bold',
+    },
     statusBadge: {
         backgroundColor: '#37D67A',
-        paddingHorizontal: 12,
+        paddingHorizontal: 10,
         paddingVertical: 6,
         borderRadius: 12,
+        marginLeft: 8,
     },
     noStock: {
         backgroundColor: '#FF4757',
@@ -169,7 +248,7 @@ const styles = StyleSheet.create({
     },
     statusText: {
         color: '#FFFFFF',
-        fontSize: 12,
+        fontSize: 11,
         fontWeight: 'bold',
     },
 });

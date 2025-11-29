@@ -10,11 +10,13 @@ const PremiosList = () => {
         { emoji: '🎒', nombre: 'Mochila Deportiva', puntos: 500 },
         { emoji: '🎟️', nombre: 'Clase Personal Gratis', puntos: 400 },
         { emoji: '🥤', nombre: 'Batido de Proteína', puntos: 150 },
-        { emoji: '🧘', nombre: 'Mes de Yoga Gratis', puntos: 600 }
+        { emoji: '🧘', nombre: 'Mes de Yoga Gratis', puntos: 600 },
+        { emoji: '🧖', nombre: 'Toalla Premium', puntos: 180 },
+        { emoji: '🎧', nombre: 'Audífonos Deportivos', puntos: 350 }
     ];
 
     return (
-        <section className="premios-list section">
+        <section id="premios-section" className="premios-list section">
             <div className="container">
                 <div className="section-header text-center">
                     <h2>Premios <span className="text-gradient">Increíbles</span></h2>
@@ -36,7 +38,6 @@ const PremiosList = () => {
                                 <span className="puntos-value">{premio.puntos}</span>
                                 <span className="puntos-label">puntos</span>
                             </div>
-                            <button className="btn btn-primary btn-small">Canjear</button>
                         </div>
                     ))}
                 </div>

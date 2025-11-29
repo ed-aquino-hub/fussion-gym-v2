@@ -1,4 +1,5 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
 import Hero from '../components/Hero';
 import WhatIsFussion from '../components/WhatIsFussion';
 import Beneficios from '../components/Beneficios';
@@ -11,6 +12,7 @@ import './Landing.css';
 const Landing = () => {
     return (
         <div className="landing-page">
+            <Navbar />
             <Hero />
             <WhatIsFussion />
             <Beneficios />

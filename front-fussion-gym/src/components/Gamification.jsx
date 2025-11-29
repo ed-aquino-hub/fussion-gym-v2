@@ -3,7 +3,7 @@ import './Gamification.css';
 
 const Gamification = () => {
     return (
-        <section className="gamification section">
+        <section id="gamification-section" className="gamification section">
             <div className="container">
                 <div className="section-header text-center">
                     <h2>¿Cómo funciona la <span className="text-gradient">Gamificación</span>?</h2>

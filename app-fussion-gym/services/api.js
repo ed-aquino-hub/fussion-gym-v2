@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 
-const API_URL = 'http://192.168.1.45:3307/api'; // Backend on port 3307
+// const API_URL = 'http://10.219.126.3:3307/api'; // UTP Backend on port 3307
+const API_URL = 'http://192.168.1.45:3307/api'; // Casa Backend on port 3307
 
 const api = axios.create({
     baseURL: API_URL,
@@ -16,7 +17,7 @@ export const login = async (email, password) => {
     return response.data;
 };
 
-// Users
+// Usuarios
 export const getUserProfile = async (token, userId) => {
     const response = await api.get(`/users/${userId}`, {
         headers: { Authorization: `Bearer ${token}` }
@@ -56,6 +57,31 @@ export const scanAttendanceQR = async (token, usuarioId) => {
         { usuarioId },
         { headers: { Authorization: `Bearer ${token}` } }
     );
+    return response.data;
+};
+
+// Exercises
+export const getExercises = async (token) => {
+    const response = await api.get('/exercises', {
+        headers: { Authorization: `Bearer ${token}` }
+    });
+    return response.data;
+};
+
+export const completeExercise = async (token, ejercicioId) => {
+    const response = await api.post(
+        '/exercises/scan',
+        { ejercicioId },
+        { headers: { Authorization: `Bearer ${token}` } }
+    );
+    return response.data;
+};
+
+// Ranking
+export const getRanking = async (token, limit = 50) => {
+    const response = await api.get(`/ranking?limit=${limit}`, {
+        headers: { Authorization: `Bearer ${token}` }
+    });
     return response.data;
 };
 

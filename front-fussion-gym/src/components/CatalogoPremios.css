@@ -1,0 +1,22 @@
+/* CatalogoPremios Additional Styles */
+
+.reward-card {
+    position: relative;
+    overflow: visible !important;
+}
+
+.reward-card.insufficient-points {
+    filter: brightness(0.85);
+}
+
+.reward-card.out-of-stock {
+    filter: grayscale(30%);
+}
+
+.reward-card:hover {
+    transform: translateY(-5px) !important;
+}
+
+.points-banner {
+    box-shadow: 0 4px 20px rgba(29, 140, 255, 0.2);
+}

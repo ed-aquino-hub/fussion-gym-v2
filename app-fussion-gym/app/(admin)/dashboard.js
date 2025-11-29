@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-native';
 import { useRouter } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -11,7 +11,7 @@ export default function AdminDashboard() {
     };
 
     return (
-        <View style={styles.container}>
+        <ScrollView style={styles.container} contentContainerStyle={styles.scrollContent}>
             <View style={styles.header}>
                 <Text style={styles.title}>Panel Administrativo</Text>
                 <Text style={styles.subtitle}>FUSSION GYM</Text>
@@ -29,27 +29,55 @@ export default function AdminDashboard() {
                     </Text>
                 </TouchableOpacity>
 
-                <View style={styles.actionCard}>
+                <TouchableOpacity
+                    style={styles.actionCard}
+                    onPress={() => router.push('/(admin)/users')}
+                >
                     <Text style={styles.actionEmoji}>👥</Text>
                     <Text style={styles.actionTitle}>Gestión de Usuarios</Text>
                     <Text style={styles.actionDescription}>
-                        Usar el panel web para gestionar usuarios
+                        Ver y gestionar todos los usuarios del gimnasio
                     </Text>
-                </View>
+                </TouchableOpacity>
 
-                <View style={styles.actionCard}>
+                <TouchableOpacity
+                    style={styles.actionCard}
+                    onPress={() => router.push('/(admin)/gestion-premios')}
+                >
                     <Text style={styles.actionEmoji}>🎁</Text>
                     <Text style={styles.actionTitle}>Gestión de Premios</Text>
                     <Text style={styles.actionDescription}>
-                        Usar el panel web para gestionar premios y canjes
+                        Ver, editar y administrar premios del sistema
                     </Text>
-                </View>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={styles.actionCard}
+                    onPress={() => router.push('/(admin)/canjes')}
+                >
+                    <Text style={styles.actionEmoji}>🎟️</Text>
+                    <Text style={styles.actionTitle}>Historial de Canjes</Text>
+                    <Text style={styles.actionDescription}>
+                        Ver todos los canjes realizados por los usuarios
+                    </Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity
+                    style={styles.actionCard}
+                    onPress={() => router.push('/(admin)/ranking')}
+                >
+                    <Text style={styles.actionEmoji}>🏆</Text>
+                    <Text style={styles.actionTitle}>Ranking de Usuarios</Text>
+                    <Text style={styles.actionDescription}>
+                        Ver el ranking de usuarios por puntos acumulados
+                    </Text>
+                </TouchableOpacity>
             </View>
 
             <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
                 <Text style={styles.logoutText}>Cerrar Sesión</Text>
             </TouchableOpacity>
-        </View>
+        </ScrollView>
     );
 }
 
@@ -57,7 +85,10 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#0F1419',
+    },
+    scrollContent: {
         padding: 20,
+        paddingBottom: 40,
     },
     header: {
         alignItems: 'center',
@@ -74,8 +105,8 @@ const styles = StyleSheet.create({
         fontSize: 16,
     },
     actions: {
-        flex: 1,
         gap: 16,
+        marginBottom: 20,
     },
     actionCard: {
         backgroundColor: '#1A2332',
@@ -104,7 +135,6 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         padding: 16,
         alignItems: 'center',
-        marginTop: 20,
     },
     logoutText: {
         color: '#FFFFFF',

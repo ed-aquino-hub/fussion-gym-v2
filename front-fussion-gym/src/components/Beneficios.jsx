@@ -36,7 +36,7 @@ const Beneficios = () => {
     ];
 
     return (
-        <section className="beneficios section gradient-bg">
+        <section id="beneficios-section" className="beneficios section gradient-bg">
             <div className="container">
                 <div className="section-header text-center">
                     <h2>Beneficios que <span className="text-gradient">Transforman</span></h2>

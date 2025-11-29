@@ -105,6 +105,10 @@ export default function Profile() {
             )}
 
             <View style={styles.actions}>
+                <TouchableOpacity style={styles.actionButton} onPress={() => router.push('/(client)/ejercicios')}>
+                    <Text style={styles.actionButtonText}>🏋️ Ejercicios</Text>
+                </TouchableOpacity>
+
                 <TouchableOpacity style={styles.actionButton} onPress={() => router.push('/(client)/scanner')}>
                     <Text style={styles.actionButtonText}>📷 Escanear Ejercicio</Text>
                 </TouchableOpacity>
