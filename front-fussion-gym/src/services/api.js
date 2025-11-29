@@ -1,5 +1,7 @@
 import axios from 'axios';
-import { API_URL } from '../config';
+
+// Get API URL from environment variable (Vite uses import.meta.env)
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3307/api';
 
 // Create axios instance
 const api = axios.create({
