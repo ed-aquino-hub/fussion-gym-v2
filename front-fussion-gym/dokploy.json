@@ -1,0 +1,14 @@
+{
+    "name": "fussion-gym-frontend",
+    "build": {
+        "command": "npm run build",
+        "outputDirectory": "dist"
+    },
+    "start": {
+        "command": "npm start",
+        "port": 3000
+    },
+    "env": {
+        "VITE_API_URL": "https://gym-back.donita.site/api"
+    }
+}
